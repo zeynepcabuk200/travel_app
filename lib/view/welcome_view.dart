@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
+import 'package:travel_app/core/constants/app_colors.dart';
 import 'package:travel_app/core/constants/app_text.dart';
 import 'package:travel_app/core/textstyle/app_textstyle.dart';
 import 'package:travel_app/core/widget/base_button.dart';
@@ -31,28 +31,43 @@ class _WelcomeViewState extends State<WelcomeView> {
                       ))),
               child: Container(
                 margin: const EdgeInsets.only(top: 150, left: 20, right: 20),
-                child: const Row(
+                child:  Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(
+                        const Text(
                           AppText.welcomeTitleText,
                           style: AppTextstyle.largeBoldText,
                         ),
-                        Text(
+                        const Text(
                           AppText.welcomeSubTitleText,
                           style: AppTextstyle.largeText,
                         ),
-                        SizedBox(height: 15,),
-                        SizedBox(
+                        const SizedBox(height: 15,),
+                        const SizedBox(
                           width: 350,
                           child:  Text(
                             AppText.welcomeDescriptionText,
                             style: AppTextstyle.size14BlackText,
                           ),
                         ),
+                        BaseButton(width: 150,)
                       ],
+                    ),
+                    Column(
+                      children: List.generate(3, (indexDots){
+                        return Container(
+                          margin: const EdgeInsets.only(bottom: 2),
+                          height:index==indexDots? 30:10,
+                          width: 8,
+                          decoration: BoxDecoration(
+                            color: index==indexDots?AppColors.blueColor:AppColors.greyColor,
+                            borderRadius: BorderRadius.circular(5)
+                            ),
+                        );
+                      })
                     )
                   ],
                 ),

@@ -13,11 +13,14 @@ class BaseButton extends StatelessWidget {
     return Container(
       width: width,
       height: 60,
-      decoration: const BoxDecoration(
-        color: AppColors.blueColor
+      decoration: BoxDecoration(
+        color: AppColors.blueColor,
+        borderRadius: BorderRadius.circular(10)
       ),
-      child: Row(children: [
-        SvgPicture.asset(AppAssetsPath.nextIconPath)
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+        SvgPicture.asset(AppAssetsPath.nextIconPath,height: 25,)
       ],),
     );
   }
