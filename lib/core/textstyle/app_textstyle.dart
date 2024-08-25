@@ -8,8 +8,13 @@ class AppTextstyle {
     color: AppColors.black54Color,
     fontSize: 40,
   );
+  static const TextStyle middleBlackText = TextStyle(
+    color: AppColors.blackColor,
+    fontSize: 25,
+    fontWeight: FontWeight.bold
+  );
   static const TextStyle size14BlackText = TextStyle(
     color: AppColors.black38Color,
-    fontSize: 20,
+    fontSize: 14,
   );
 }
