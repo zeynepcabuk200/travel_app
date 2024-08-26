@@ -10,6 +10,12 @@ class HomeView extends StatefulWidget {
 }
 
 class _HomeViewState extends State<HomeView> with TickerProviderStateMixin {
+  var images={
+    "assets/images/travel_1.jpg":"Balloning",
+    "assets/images/travel_0.png":"Hiking",
+    "assets/images/travel_1.jpg":"Kayaking",
+    "assets/images/travel_1.jpg":"Snorkling",
+  };
   @override
   Widget build(BuildContext context) {
     TabController _tabController = TabController(length: 3, vsync: this);
@@ -65,7 +71,7 @@ class _HomeViewState extends State<HomeView> with TickerProviderStateMixin {
                   ]),
             ),
             SizedBox(
-              height: 300,
+              height: 350,
               width: double.maxFinite,
               child: TabBarView(
                 controller: _tabController,
@@ -75,8 +81,8 @@ class _HomeViewState extends State<HomeView> with TickerProviderStateMixin {
                       scrollDirection: Axis.horizontal,
                       itemBuilder: (context, index) {
                         return Container(
-                          width: 200,
-                          height: 300,
+                          width: 220,
+                          height: 350,
                           margin: const EdgeInsets.only(right: 15, top: 10),
                           decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(20),
@@ -91,7 +97,9 @@ class _HomeViewState extends State<HomeView> with TickerProviderStateMixin {
                 ],
               ),
             ),
-            const SizedBox(height: 20,),
+            const SizedBox(
+              height: 25,
+            ),
             const Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -105,25 +113,37 @@ class _HomeViewState extends State<HomeView> with TickerProviderStateMixin {
                 ),
               ],
             ),
-            const SizedBox(height: 20,),
+            const SizedBox(
+              height: 20,
+            ),
             SizedBox(
-              height: 100,
+              height: 110,
               child: ListView.builder(
-                itemCount: 4,
-                scrollDirection: Axis.horizontal,
-                itemBuilder: (context,index){
-                  return Column(children: [
-                    Container(
-                      height: 80,
-                      width: 80,
-                      margin: const EdgeInsets.symmetric(horizontal: 15),
-                      decoration: BoxDecoration(
-                        color: AppColors.greyColor,
-                        image: const DecorationImage(image: AssetImage("assets/images/travel_1.jpg"),fit: BoxFit.cover),
-                        borderRadius: BorderRadius.circular(20)),
-                    )
-                  ],);
-              }),
+                  itemCount: images.length,
+                  scrollDirection: Axis.horizontal,
+                  itemBuilder: (context, index) {
+                    return Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Container(
+                          height: 80,
+                          width: 80,
+                          margin: const EdgeInsets.symmetric(horizontal: 15),
+                          decoration: BoxDecoration(
+                              color: AppColors.greyColor,
+                              image:  DecorationImage(
+                                  image:
+                                      AssetImage(images.keys.elementAt(index)),
+                                  fit: BoxFit.cover),
+                              borderRadius: BorderRadius.circular(20)),
+                        ),
+                        Text(
+                          images.values.elementAt(index),
+                          style: AppTextstyle.smallBlackText,
+                        ),
+                      ],
+                    );
+                  }),
             )
           ],
         ),
