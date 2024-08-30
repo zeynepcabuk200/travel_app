@@ -13,6 +13,6 @@ class AppButton extends StatelessWidget {
       decoration: BoxDecoration(
           color: AppColors.greyColor, borderRadius: BorderRadius.circular(15)),
     );
-    ;
+    
   }
 }
