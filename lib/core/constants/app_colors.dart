@@ -8,5 +8,6 @@ class AppColors {
   static const Color lightBlueColor=Color.fromARGB(255, 63, 155, 198);
   static const Color greyColor=Colors.grey;
   static const Color whiteColor=Colors.white;
+  static const Color starColor=Color.fromARGB(255, 232, 205, 4);
 
 }
