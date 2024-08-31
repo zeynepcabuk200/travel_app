@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:travel_app/core/constants/app_colors.dart';
 import 'package:travel_app/core/textstyle/app_textstyle.dart';
 import 'package:travel_app/core/widget/app_button.dart';
+import 'package:travel_app/core/widget/base_button.dart';
 
 class DetailView extends StatefulWidget {
   const DetailView({super.key});
@@ -12,10 +13,11 @@ class DetailView extends StatefulWidget {
 
 class _DetailViewState extends State<DetailView> {
   int activeStar = 4;
+  int selectedIndex = -1;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
+      body: SizedBox(
         height: double.maxFinite,
         width: double.maxFinite,
         child: Stack(
@@ -126,13 +128,63 @@ class _DetailViewState extends State<DetailView> {
                         "Number of people in your group",
                         style: AppTextstyle.smallGreyText,
                       ),
-                      const SizedBox(height: 10,),
+                      const SizedBox(
+                        height: 10,
+                      ),
                       Wrap(
-                        children: List.generate(5, (index){
-                        return AppButton();
-                      }),)
+                        children: List.generate(5, (index) {
+                          return AppButton(
+                            color: selectedIndex == index
+                                ? AppColors.black54Color
+                                : AppColors.greyColor,
+                            backgroundColor: selectedIndex == index
+                                ? AppColors.blackColor
+                                : AppColors.greyColor,
+                            size: 60,
+                            borderColor: AppColors.greyColor,
+                            isIcon: false,
+                            text: (index + 1).toString(),
+                            textStyle: selectedIndex == index
+                                ? AppTextstyle.smallWhiteText
+                                : AppTextstyle.smallBlackText,
+                            function: () {
+                              setState(() {
+                                selectedIndex = index;
+                              });
+                            },
+                          );
+                        }),
+                      ),
+                      const SizedBox(
+                        height: 20,
+                      ),
+                      const Text(
+                        "Description",
+                        style: AppTextstyle.middleBlackText,
+                      ),
+                      const Text(
+                        "Description DescriptionDescriptionDescription DescriptionDescription Description Description Description Description Description Description Description DescriptionDescriptionDescription",
+                        style: AppTextstyle.smallGreyText,
+                      ),
                     ],
                   ),
+                )),
+            Positioned(
+                bottom: 20,
+                left: 20,
+                child: Row(
+                  children: [
+                    AppButton(
+                      backgroundColor: AppColors.whiteColor,
+                      borderColor: AppColors.greyColor,
+                      color: AppColors.greyColor,
+                      size: 60,
+                      function: () {},
+                      isIcon: true,
+                      icon: Icons.favorite_border,
+                    ),
+                    BaseButton(isResponsive: true,)
+                  ],
                 ))
           ],
         ),

@@ -33,4 +33,8 @@ class AppTextstyle {
     fontSize: 14,
   );
 
+ static const TextStyle smallWhiteText = TextStyle(
+    color: AppColors.whiteColor,
+    fontSize: 14,
+  );
 }
