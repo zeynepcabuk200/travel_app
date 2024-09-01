@@ -172,6 +172,7 @@ class _DetailViewState extends State<DetailView> {
             Positioned(
                 bottom: 20,
                 left: 20,
+                right: 20,
                 child: Row(
                   children: [
                     AppButton(
@@ -183,6 +184,7 @@ class _DetailViewState extends State<DetailView> {
                       isIcon: true,
                       icon: Icons.favorite_border,
                     ),
+                    const SizedBox(width: 15,),
                     BaseButton(isResponsive: true,)
                   ],
                 ))

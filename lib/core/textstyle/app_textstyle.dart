@@ -37,4 +37,8 @@ class AppTextstyle {
     color: AppColors.whiteColor,
     fontSize: 14,
   );
+  static const TextStyle midWhiteText = TextStyle(
+    color: AppColors.whiteColor,
+    fontSize: 16,
+  );
 }

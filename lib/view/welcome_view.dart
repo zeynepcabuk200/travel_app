@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:travel_app/core/constants/app_colors.dart';
 import 'package:travel_app/core/constants/app_text.dart';
 import 'package:travel_app/core/textstyle/app_textstyle.dart';
 import 'package:travel_app/core/widget/base_button.dart';
+import 'package:travel_app/cubit/app_cubits.dart';
 
 class WelcomeView extends StatefulWidget {
   const WelcomeView({super.key});
@@ -45,7 +47,7 @@ class _WelcomeViewState extends State<WelcomeView> {
                           AppText.welcomeSubTitleText,
                           style: AppTextstyle.largeText,
                         ),
-                        const SizedBox(height: 15,),
+                        const SizedBox(height: 25,),
                         const SizedBox(
                           width: 350,
                           child:  Text(
@@ -53,7 +55,18 @@ class _WelcomeViewState extends State<WelcomeView> {
                             style: AppTextstyle.size14BlackText,
                           ),
                         ),
-                        BaseButton(width: 150,)
+                        const SizedBox(height: 50,),
+                        GestureDetector(
+                          onTap: () {
+                            BlocProvider.of<AppCubits>(context).getData();
+                          },
+                          child: Container(
+                            width: 200,
+                            child: Row(
+                              children: [
+                                BaseButton(width: 150,),
+                              ],
+                            )))
                       ],
                     ),
                     Column(

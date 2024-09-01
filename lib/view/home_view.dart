@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:travel_app/core/constants/app_colors.dart';
 import 'package:travel_app/core/textstyle/app_textstyle.dart';
+import 'package:travel_app/cubit/app_cubit_states.dart';
+import 'package:travel_app/cubit/app_cubits.dart';
 
 class HomeView extends StatefulWidget {
   const HomeView({super.key});
@@ -20,7 +23,10 @@ class _HomeViewState extends State<HomeView> with TickerProviderStateMixin {
   Widget build(BuildContext context) {
     TabController _tabController = TabController(length: 3, vsync: this);
     return Scaffold(
-      body: Container(
+      body: BlocBuilder<AppCubits,AppCubitStates>(builder: (context,state){
+        if(state is LoadedState){
+          var info =state.places;
+          return Container(
         padding: const EdgeInsets.only(top: 70, left: 15, right: 15),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -77,7 +83,7 @@ class _HomeViewState extends State<HomeView> with TickerProviderStateMixin {
                 controller: _tabController,
                 children: [
                   ListView.builder(
-                      itemCount: 3,
+                      itemCount: info.length,
                       scrollDirection: Axis.horizontal,
                       itemBuilder: (context, index) {
                         return Container(
@@ -86,9 +92,9 @@ class _HomeViewState extends State<HomeView> with TickerProviderStateMixin {
                           margin: const EdgeInsets.only(right: 15, top: 10),
                           decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(20),
-                              image: const DecorationImage(
+                              image: DecorationImage(
                                   image:
-                                      AssetImage("assets/images/travel_0.png"),
+                                      NetworkImage("http://mark.bslmeiyu.com/uploads/"+info[index].img),
                                   fit: BoxFit.cover)),
                         );
                       }),
@@ -147,7 +153,11 @@ class _HomeViewState extends State<HomeView> with TickerProviderStateMixin {
             )
           ],
         ),
-      ),
+      );
+
+        }
+        else{return Container();}
+      })
     );
   }
 }
